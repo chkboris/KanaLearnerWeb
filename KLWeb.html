@@ -1,0 +1,66 @@
+<html>
+  <head>
+  </head>  
+  <body>
+    <label style = "font-size: 25px">Number Correct:</label>
+    <label id = "correct" style = "font-size: 25px">0</label><br>
+    <label style = "font-size: 25px">Number of Attempts:</label>
+    <label id = "attempts" style = "font-size: 25px">0</label><br><br>
+    <label style = "font-size: 25px"><input id = "qmCheck" type="checkbox" style="width:25px; height: 25px;">Quick Mode</label><br><br>
+    
+    <div style = "width:200px; text-align: center; border: 1px solid black">
+      <label style="font-size:50px; " type="text" id="Kanabox"></label>
+    </div><br> 
+      
+    <input style = "font-size: 25px; width:200px" type="text" id = "Abox" onchange="aBoxChanged()"><br>
+    
+    <label id= "demo"></label>
+    
+    
+    <script>
+      
+      function aBoxChanged() {
+        var value = document.getElementById("Abox").value;
+        document.getElementById("demo").innerHTML = "You wrote: " + value;
+        
+        submitAnswer(value);        
+      }
+      
+      function submitAnswer(answer) {
+        att += 1;
+        if(answer == answerPair.English)
+          {
+            answerPair = getRandomKana();
+            kbox.innerText = answerPair.Kana;
+            cor += 1;            
+          }
+        abox.value = "";
+        document.getElementById("attempts").innerHTML = att;
+        document.getElementById("correct").innerHTML = cor;
+      }
+      
+      function getRandomKana(){
+        return map[Math.floor(Math.random()*map.length)];
+      }
+      
+      var att = 0;
+      var cor = 0;      
+      var abox = document.getElementById("Abox");
+      var kbox = document.getElementById("Kanabox");
+      kbox.width = Abox.width;
+      
+      var map = [
+                  {"English":"a", "Kana":"あ"},
+                  {"English":"i", "Kana":"い"},
+                  {"English":"u", "Kana":"う"},
+                ];
+      
+      var answerPair = getRandomKana();
+      kbox.innerText = answerPair.Kana;     
+      
+      
+                                
+    </script>
+    
+  </body>
+</html>
